@@ -1,5 +1,7 @@
 package com.janawat.customer.customer;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,12 @@ public class CustomerController {
     public Customer createCustomer(@RequestBody Customer customer){
         return customerService.createCustomer(customer);
     }
+
+    @GetMapping()
+    public List<Customer> getAllCustomer(){
+        return customerService.getCustomerAll();
+    }
+
 
     @GetMapping("/{id}")
     public Customer getCustomerById(@PathVariable Long id){

@@ -1,5 +1,7 @@
 package com.janawat.customer.customer;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,6 +35,11 @@ public class CustomerServiceImpl implements CustomerService {
     public void deleteCustomer(Long id) {
        
         customerRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Customer> getCustomerAll() {
+         return customerRepository.findAll();
     }
 
 
