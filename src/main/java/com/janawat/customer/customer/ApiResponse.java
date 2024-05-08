@@ -21,18 +21,6 @@ public class ApiResponse {
     private String message;
     private Object[] data;
 
-    public static ApiResponse formatValidationErrorResponse(BindingResult result) {
-        List<String> errors = new ArrayList<>();
-        for (FieldError error : result.getFieldErrors()) {
-            errors.add(error.getField() + " " + error.getDefaultMessage());
-        }
-        return new ApiResponse(HttpStatus.BAD_REQUEST.value(), "Validation error(s):", errors.toArray());
-    }
-
-    public static ApiResponse formatSuccessResponse(Object[] data){
-        return  new ApiResponse(HttpStatus.CREATED.value(),"Added success",data);
-    }
-
     public static ApiResponse errorResponse(HttpStatus status,String message, Object[] data) {
 
         return new ApiResponse(status.value(),message,data);
