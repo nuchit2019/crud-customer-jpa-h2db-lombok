@@ -32,4 +32,13 @@ public class ApiResponse {
     public static ApiResponse formatSuccessResponse(Object[] data){
         return  new ApiResponse(HttpStatus.CREATED.value(),"Added success",data);
     }
+
+    public static ApiResponse errorResponse(HttpStatus status,String message, Object[] data) {
+
+        return new ApiResponse(status.value(),message,data);
+    }
+
+    public static ApiResponse successResponse(HttpStatus status,String message,Object[] data){
+        return  new ApiResponse(status.value(), message, data);
+    }
 }

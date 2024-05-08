@@ -32,9 +32,14 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void deleteCustomer(Long id) {
-
-        customerRepository.deleteById(id);
+    public Boolean deleteCustomer(Long id) {
+        try {
+            customerRepository.deleteById(id);
+            return true; // Deletion successful
+        } catch (Exception e) {
+            // Log the exception if needed
+            return false; // Deletion failed
+        }
     }
 
     @Override
