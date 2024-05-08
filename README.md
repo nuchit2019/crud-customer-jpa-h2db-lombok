@@ -1,7 +1,7 @@
-# Project CRUD Customer
+# Simple API CRUD,Unit Test Customer data with Spring Boot
 
 ## Overview
-This project implements CRUD (Create, Read, Update, Delete) operations for managing customers. It provides endpoints to interact with customer data via HTTP requests.
+This project implements CRUD (Create, Read, Update, Delete) operations for managing customers. It provides endpoints to interact with customer data via HTTP requests. UnitTest  Controller Layer and Service Layer
 
 ## Classes
 
@@ -40,13 +40,14 @@ This project implements CRUD (Create, Read, Update, Delete) operations for manag
 3. Open the project in your preferred IDE.
 
 4. Build the project using Maven:
-
+```
 mvn clean install
+```
 
 5. Run the application:
-
+```
 java -jar target/your-application-name.jar
-
+```
 6. The application should now be running locally. You can access the API endpoints as defined in the CustomerController class.
 
 ## API Endpoints
