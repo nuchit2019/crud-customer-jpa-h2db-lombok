@@ -28,9 +28,11 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity<?> createCustomer(@Valid  @RequestBody Customer customer, BindingResult result) {
       if(result.hasErrors()){
-          return new ResponseEntity<>(formatValidationError(result), HttpStatus.BAD_REQUEST);
+          return new ResponseEntity<>(ApiResponse.formatValidationErrorResponse(result), HttpStatus.BAD_REQUEST);
       }
-        return new ResponseEntity<>(customerService.createCustomer(customer),HttpStatus.CREATED);
+      Customer createdCustomer = customerService.createCustomer(customer);
+
+        return new ResponseEntity<>(ApiResponse.formatSuccessResponse(new Object[]{createdCustomer}),HttpStatus.CREATED);
     }
 
 
@@ -49,7 +51,7 @@ public class CustomerController {
     public ResponseEntity<?> updateCustomer(@PathVariable Long id, @Valid @RequestBody Customer customer, BindingResult result) {
 
         if(result.hasErrors()){
-            return  new ResponseEntity<>(formatValidationError(result), HttpStatus.BAD_REQUEST);
+            return  new ResponseEntity<>(ApiResponse.formatValidationErrorResponse(result), HttpStatus.BAD_REQUEST);
         }
 
         return new ResponseEntity<>(customerService.updateCustomer(id, customer), HttpStatus.OK);
@@ -61,17 +63,5 @@ public class CustomerController {
         customerService.deleteCustomer(id);
     }
 
-    private String formatValidationError(BindingResult result) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Validation error(s): ");
-        for(FieldError error: result.getFieldErrors()){
-            sb.append(error.getField())
-                    .append(" ")
-                    .append(error.getDefaultMessage())
-                    .append("; ");
-        }
-
-        return sb.toString();
-    }
 
 }

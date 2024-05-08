@@ -28,4 +28,8 @@ public class ApiResponse {
         }
         return new ApiResponse(HttpStatus.BAD_REQUEST.value(), "Validation error(s):", errors.toArray());
     }
+
+    public static ApiResponse formatSuccessResponse(Object[] data){
+        return  new ApiResponse(HttpStatus.CREATED.value(),"Added success",data);
+    }
 }
