@@ -35,30 +35,38 @@ class CustomerControllerTest {
     @Test
     void testCreateCustomer() throws Exception {
         // Arrange
+        // Create a sample customer
         Customer customer = new Customer();
         customer.setEmail("jane.doe@example.org");
         customer.setId(1L);
         customer.setName("Name");
+        // Mock the behavior of the customer service to return the customer
         when(customerService.createCustomer(Mockito.<Customer>any())).thenReturn(customer);
 
+        // Create another instance of the customer
         Customer customer2 = new Customer();
         customer2.setEmail("jane.doe@example.org");
         customer2.setId(1L);
         customer2.setName("Name");
 
+        // Convert customer object to JSON string
         String content = (new ObjectMapper()).writeValueAsString(customer2);
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/customer")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(content);
 
         // Act
+        // Perform the request and obtain the result
         ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(customerController)
                 .build()
                 .perform(requestBuilder);
 
         // Assert
+        // Verify the HTTP status code is 201 (Created)
         actualPerformResult.andExpect(MockMvcResultMatchers.status().isCreated())
+                // Verify the content type is application/json
                 .andExpect(MockMvcResultMatchers.content().contentType("application/json"))
+                // Verify the response body matches the expected JSON string
                 .andExpect(MockMvcResultMatchers.content()
                         .string(
                                 "{\"status\":200,\"message\":\"Added success\",\"data\":[{\"id\":1,\"name\":\"Name\",\"email\":\"jane.doe@example"
@@ -69,29 +77,40 @@ class CustomerControllerTest {
     @Test
     void testCreateCustomer2() throws Exception {
         // Arrange
+        // Create a sample customer
         Customer customer = new Customer();
         customer.setEmail("jane.doe@example.org");
         customer.setId(1L);
         customer.setName("Name");
+
+        // Mock the behavior of the customer service to return the customer
         when(customerService.createCustomer(Mockito.<Customer>any())).thenReturn(customer);
 
+        // Create another instance of the customer with an invalid email format
         Customer customer2 = new Customer();
         customer2.setEmail("U.U.U");
         customer2.setId(1L);
         customer2.setName("Name");
+
+        // Convert customer object to JSON string
         String content = (new ObjectMapper()).writeValueAsString(customer2);
+        // Build the request
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/customer")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(content);
 
         // Act
+        // Perform the request and obtain the result
         ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(customerController)
                 .build()
                 .perform(requestBuilder);
 
         // Assert
+        // Verify the HTTP status code is 400 (Bad Request)
         actualPerformResult.andExpect(MockMvcResultMatchers.status().is(400))
+                // Verify the content type is application/json
                 .andExpect(MockMvcResultMatchers.content().contentType("application/json"))
+                // Verify the response body matches the expected JSON string
                 .andExpect(MockMvcResultMatchers.content()
                         .string("{\"status\":400,\"message\":\"Validation error(s):\",\"data\":[\"email Invalid email format\"]}"));
     }
