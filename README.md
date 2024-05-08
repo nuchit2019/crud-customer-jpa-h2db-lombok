@@ -76,22 +76,24 @@ Response:
     "email": "john.doe@example.com"
   }
 }
-Testing
+```
+
+## Testing
 Unit tests and integration tests should be written to ensure the correctness of the application logic and API endpoints. Mockito can be used for mocking dependencies during testing.
 
-Deployment
+## Deployment
 The application can be deployed to various environments like local servers, cloud platforms (e.g., AWS, Azure, Heroku), or containerized using Docker. Ensure proper configuration and security measures are in place before deployment.
 
 Continuous Integration/Continuous Deployment (CI/CD)
 Implement CI/CD pipelines using tools like Jenkins, Travis CI, or GitHub Actions to automate the build, test, and deployment processes.
 
-Contributors
+## Contributors
 Nuchit Atjanawat
 
-License
+## License
 MIT License
 
-Acknowledgements
+## Acknowledgements
 Special thanks to Spring Boot, Lombok, H2 Database, and Java Persistence API for their contributions to this project.
 
 This Markdown format provides better readability and can be rendered nicely on platforms like GitHub.
