@@ -58,6 +58,7 @@ java -jar target/your-application-name.jar
 - **PUT /customers/{id}**: Update an existing customer.
 - **DELETE /customers/{id}**: Delete a customer by ID.
 
+
 ## Sample Request and Response
 
 **Request:**
@@ -79,8 +80,20 @@ Response:
 }
 ```
 
-## Testing
-Unit tests and integration tests should be written to ensure the correctness of the application logic and API endpoints. Mockito can be used for mocking dependencies during testing.
+## Unit Testing
+
+### Writing Unit Tests
+
+Unit tests are written for both the Controller and Service layers using a framework like JUnit. For Controller tests, MockMvc can be used to simulate HTTP requests and verify responses. In Service tests, Mockito is commonly used to mock dependencies and simulate behavior.
+
+### Running Unit Tests
+
+1. Navigate to the project directory.
+
+2. Execute the following Maven command to run unit tests:
+```
+mvn test
+```
 
 ## Deployment
 The application can be deployed to various environments like local servers, cloud platforms (e.g., AWS, Azure, Heroku), or containerized using Docker. Ensure proper configuration and security measures are in place before deployment.
