@@ -33,7 +33,7 @@ public class CustomerControllerIntegrationTest {
         customerRepository.deleteAll();
         customer  = new Customer();
         customer.setName("Nuchit Janawat");
-        customer.setEmail("nuchit@thanachart.co.th");
+        customer.setEmail("nuchit@outlook.com");
         customer = customerRepository.save(customer);
     }
 
